@@ -147,7 +147,7 @@ body {
          * (width: 3em = 3 * 30vw = 90vw)
          * (height: 2em = 2 * 30vw = 60vw)
          */
-        font-size: 30vw;
+        font-size: 60vw;
     }
     
     .letter-text {
