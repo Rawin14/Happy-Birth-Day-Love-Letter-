@@ -1,0 +1,162 @@
+/* 1. Basic setup ให้ body/html เต็มจอและจัดกลาง */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: #fcefee;
+    font-family: 'Georgia', serif;
+    overflow-x: hidden; /* ป้องกันการเลื่อนแนวนอน */
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* 2. ตัวควบคุมขนาดหลัก (Base size) */
+.envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+
+    /* --- DESKTOP SIZE --- */
+    /* บนจอใหญ่: 1em = 100px */
+    font-size: 100px;
+}
+
+/* 3. ขนาดซองจดหมาย (แนวนอน 3:2) */
+.envelope-wrapper {
+    width: 3em;  /* 3 * 100px = 300px */
+    height: 2em; /* 2 * 100px = 200px */
+}
+
+/* The back of the envelope */
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #e74c3c;
+    border-radius: 0.05em; /* 5px */
+    box-shadow: 0 0.04em 0.15em rgba(0,0,0,0.1);
+}
+
+/* Bottom "V" shape (back) */
+.envelope::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    /* 100px -> 1em, 150px -> 1.5em */
+    border-width: 1em 1.5em; 
+    border-color: transparent transparent #c0392b transparent;
+    z-index: 0;
+}
+
+/* Front Face of the envelope */
+.envelope::after {
+    content: '';
+    position: absolute;
+    top: 1em; /* 100px */
+    left: 0;
+    width: 100%;
+    height: 1em; /* 100px */
+    background-color: #e74c3c;
+    border-bottom-left-radius: 0.05em; /* 5px */
+    border-bottom-right-radius: 0.05em; /* 5px */
+    z-index: 2;
+}
+
+/* The letter inside */
+.letter {
+    position: absolute;
+    top: 0;
+    left: 0.1em; /* 10px */
+    right: 0.1em; /* 10px */
+    height: 1.8em; /* 180px */
+    background-color: #fff;
+    border-radius: 0.03em; /* 3px */
+    box-shadow: 0 0.01em 0.03em rgba(0,0,0,0.1);
+    padding: 0.2em; /* 20px */
+    box-sizing: border-box;
+    z-index: 1;
+    transition: transform 0.5s ease-in-out;
+}
+
+.letter-text {
+    color: #333;
+    font-size: 0.16em; /* 16px (เทียบกับ 100px) */
+    line-height: 1.6;
+    /* ป้องกันข้อความล้น */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* The top flap */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1em; /* 100px */
+    background-color: #e74c3c;
+    border-top-left-radius: 0.05em; /* 5px */
+    border-top-right-radius: 0.05em; /* 5px */
+    transform-origin: top; 
+    z-index: 3;
+    transition: transform 0.5s ease-in-out, z-index 0.5s;
+}
+
+/* Triangle shape of the flap */
+.envelope-flap::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    /* 100px -> 1em, 150px -> 1.5em */
+    border-width: 1em 1.5em 0 1.5em; 
+    border-color: #e74c3c transparent transparent transparent;
+}
+
+
+/* --- THE ANIMATION --- */
+
+.envelope-wrapper:hover .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.envelope-wrapper:hover .letter {
+    transform: translateY(-0.8em); /* -80px */
+}
+
+
+/* --- 4. MEDIA QUERY (ฉบับแก้ไข) --- */
+/* ใช้กับจอที่เล็กกว่า 600px (ครอบคลุมมือถือทั้งหมด) */
+@media (max-width: 600px) {
+    .envelope-wrapper {
+        /*
+         * 1em = 30% ของความกว้างจอ
+         * (width: 3em = 3 * 30vw = 90vw)
+         * (height: 2em = 2 * 30vw = 60vw)
+         */
+        font-size: 10vw;
+    }
+    
+    .letter-text {
+        /* * บนจอ 320px: 1em = 96px -> 0.16em = 15.3px (OK)
+         * บนจอ 430px: 1em = 129px -> 0.16em = 20.6px (OK)
+         * เรายังคงใช้ 0.16em ได้เลย
+         */
+         
+        /* แต่เราจะอนุญาตให้มันตัดคำขึ้นบรรทัดใหม่ได้บนมือถือ */
+        white-space: normal;
+    }
+}
