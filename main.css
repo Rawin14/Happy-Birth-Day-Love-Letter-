@@ -78,6 +78,7 @@ body {
 .envelope.open .top {
   transform: rotateX(160deg);
   z-index: 0; /* ส่งไปข้างหลัง */
+
 }
 
 
@@ -183,11 +184,37 @@ body {
 .envelope.open .text,
 .envelope.open .to-name,
 .envelope.open .for-name {
-  
   opacity: 1; /* 4. ทำให้มองเห็น */
   
   /* 5. (สำคัญ!) หน่วงเวลา 1.4 วินาที (รอให้กางเสร็จก่อน) */
   transition-delay: 1.4s;
+}
+
+.CouplePic {
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 75px;
+  height: 100px;
+  padding: 5px; /* ขอบขาว */
+  animation: untoldcoding 1s infinite;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+
+}
+
+.Couple-Pic { /* คลาสสำหรับรูปภาพจริงด้านใน */
+  width: 100%; /* เต็มความกว้างของกรอบ */
+  height: 100%; /* เต็มความสูงของกรอบ */
+  object-fit: cover; /* ทำให้รูปเต็มกรอบ */
+
+  /* --- ⬇️ ทำให้รูปด้านใน "ตั้งตรง" โดยหมุนกลับ ⬇️ --- */
+  transform: rotate(35deg); /* หมุนกลับ 15 องศา เพื่อหักล้างการเอียงของกรอบ */
+}
+
+.envelope.open .CouplePic {
+  opacity: 1; /* ทำให้มองเห็น */
+  transition-delay: 1.4s; /* หน่วงเวลา 1.4 วินาที */
 }
 
 /* --- ▲▲▲ END OF LETTER SECTION ▲▲▲ --- */
@@ -286,4 +313,16 @@ body {
     font-size: 6.2vw;
   }
   /* ▲▲▲ END OF LETTER (Mobile) ▲▲▲ */
+
+  .CouplePic {
+    width: 24vw;  /* (75px * 0.32) */
+    height: 42.6vw; /* (100px * 0.32) */
+    bottom: -8vw;
+    left: -8vw;
+    padding: 1.6vw; /* (5px * 0.32) */
+  }
+
+  .Couple-Pic {
+    transform: rotate(35deg);
+  }
 }
