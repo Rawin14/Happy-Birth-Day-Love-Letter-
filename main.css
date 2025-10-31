@@ -70,31 +70,39 @@ body {
   width: 0;
   top: 0;
   transform-origin: top;
-  transition: transform 0.4s ease-out; /* 1. ฝาเปิด (0.0s -> 0.4s) */
+  /* 1. ฝาเปิด (0.0s -> 0.4s) */
+  transition: transform 0.4s ease-out; 
 }
 
 .envelope.open .top {
   transform: rotateX(160deg);
-  z-index: 0; /* <-- แก้ไข: ส่งไปข้างหลังสุด */
+  z-index: 0; /* ส่งไปข้างหลัง */
 }
 
 
 /* --- ▼▼▼ LETTER SECTION (แก้ไขใหม่) ▼▼▼ --- */
 
-/* .letter (Container) - คอนเทนเนอร์สำหรับจดหมายที่พับ */
+/* .letter (Container) - คอนเทนเนอร์สำหรับจดหมาย */
 .letter {
   position: absolute;
   top: 10px;
   left: 10px;
   width: 230px;
-  height: 180px; /* ความสูงรวมของจดหมาย (90px + 90px) */
+  height: 80px; /* 90px + 90px */
   z-index: 2; /* อยู่หลัง .front */
-  transform-style: preserve-3d; 
-  transition: transform 0.4s ease-out 0.4s; /* 2. จดหมายเด้งออก (0.4s -> 0.8s) */
+  transform-style: preserve-3d;
+  
+  /* 2. เลื่อนขึ้นและขยาย (0.4s -> 0.9s) */
+  transition: transform 0.5s ease-out 0.4s;
 }
 
+/* envelope.open .letter - ตอนเด้งออก */
 .envelope.open .letter {
-  transform: translateY(-90px) translateZ(10px); /* เลื่อนขึ้นครึ่งหนึ่ง */
+  /* * เลื่อนขึ้น Y(-100px) เพื่อให้ "ฐาน" (ที่ 10px+90px=100px)
+   * ไปอยู่ที่ 0 (บนขอบซอง) 
+   * และขยาย 1.25 เท่า
+   */
+  transform: translateY(-100px) scale(1.25);
   z-index: 10;
 }
 
@@ -103,7 +111,7 @@ body {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 90px; /* <-- แก้ไข: ต้องสูง 90px (ครึ่งเดียว) */
+  height: 90px; /* ครึ่งเดียว (180/2) */
   background: white;
   padding: 10px;
   box-sizing: border-box;
@@ -112,41 +120,45 @@ body {
   justify-content: center;
 }
 
-/* ครึ่งล่าง (ฐาน) */
-#bottom-half {
-  top: 90px; /* <-- แก้ไข: ต้องอยู่ข้างล่าง */
-  border-bottom-left-radius: 3px; /* <-- แก้ไข: ขอบมนล่าง */
-  border-bottom-right-radius: 3px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-}
-
-/* ครึ่งบน (ส่วนที่พับ) */
+/* ครึ่งบน (ฐาน) */
 #top-half {
-  top: 0px; /* <-- แก้ไข: ต้องอยู่ข้างบน */
-  border-top-left-radius: 3px; /* <-- แก้ไข: ขอบมนบน */
-  border-top-right-radius: 3px;
-  
-  transform-origin: bottom center; /* <-- แก้ไข: จุดหมุนคือ "รอยพับ" (ขอบล่าง) */
-  
-  backface-visibility: hidden; 
-  transition: transform 0.5s ease-out 0.8s; /* 3. จดหมายกางออก (0.8s -> 1.3s) */
-  
-  transform: rotateX(180deg); /* สถานะเริ่มต้น: พับ 180 องศา */
-  z-index: 1; 
-}
-
-.envelope.open #top-half {
-  transform: rotateX(0deg); /* กางออกเป็น 0 องศา */
-}
-
-/* เนื้อหาด้านในของครึ่งบน (ที่ต้องพลิกกลับด้าน) */
-.letter-content-top {
-  position: absolute;
-  top: 0; left: 0; /* <-- แก้ไข: ต้องอยู่ที่ 0, 0 */
-  width: 100%; height: 100%;
-  background: white; /* <-- แก้ไข: รวม CSS ที่ซ้ำซ้อน */
+  top: 0px; /* อยู่ข้างบน */
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.1); /* เพิ่มเงาเล็กน้อย */
+  z-index: 2; /* อยู่เหนือครึ่งล่าง */
+}
+
+/* ครึ่งล่าง (ส่วนที่พับ) */
+#bottom-half {
+  top: 90px; /* อยู่ข้างล่าง */
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  
+  transform-origin: top center; /* <-- จุดหมุน = รอยพับ (ขอบบน) */
+  backface-visibility: hidden; 
+  
+  /* 3. จดหมายกางออก (0.9s -> 1.4s) */
+  transition: transform 0.5s ease-out 0.9s;
+  
+  /* * สถานะเริ่มต้น: พับ 180 องศา (พับขึ้นมา) * */
+  transform: rotateX(180deg); 
+  z-index: 1; /* อยู่ใต้ครึ่งบน */
+}
+
+/* envelope.open #bottom-half - ตอนกางออก */
+.envelope.open #bottom-half {
+  transform: rotateX(0deg); /* กางลงเป็น 0 องศา */
+}
+
+/* เนื้อหาด้านในของครึ่งล่าง (ที่ต้องพลิกกลับด้าน) */
+.letter-content-bottom {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: white;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
   padding: 10px;
   box-sizing: border-box;
   display: flex;
@@ -155,14 +167,6 @@ body {
   
   transform: rotateX(-180deg); /* พลิกเนื้อหากลับด้าน */
   backface-visibility: hidden; 
-  
-  opacity: 1;
-  transition: opacity 0.3s ease-out; /* transition สำหรับ opacity */
-}
-
-.envelope.open .letter-content-top {
-    opacity: 0;
-    transition-delay: 1.0s; /* หน่วงเวลาให้จางหายไป */
 }
 
 .text {
@@ -179,6 +183,7 @@ body {
 
 /* --- ▲▲▲ END OF LETTER SECTION ▲▲▲ --- */
 
+
 .text1 {
   position: absolute;
   color: rgb(8, 8, 8);
@@ -193,78 +198,74 @@ body {
 }
 
 
-/* --- ⬇️ MOBILE RESPONSIVENESS (ฉบับแก้ไขใหม่ทั้งหมด) ⬇️ --- */
+/* --- ⬇️ MOBILE RESPONSIVENESS (ฉบับแก้ไข) ⬇️ --- */
 @media (max-width: 600px) {
 
   /* (Base Ratio: 80vw / 250px) = 0.32vw per pixel */
 
   .back {
-    width: 80vw;  /* (250px * 0.32) */
-    height: 64vw; /* (200px * 0.32) */
+    width: 80vw;
+    height: 64vw;
   }
-
   .front {
-    border-right-width: 41.6vw;  /* (130px * 0.32) */
-    border-top-width: 32vw;      /* (100px * 0.32) */
-    border-bottom-width: 32vw;   /* (100px * 0.32) */
-    left: 38.4vw;                /* (120px * 0.32) */
+    border-right-width: 41.6vw;
+    border-top-width: 32vw;
+    border-bottom-width: 32vw;
+    left: 38.4vw;
   }
-
   .front:before {
-    border-left-width: 41.6vw;   /* (130px * 0.32) */
-    border-top-width: 32vw;      /* (100px * 0.32) */
-    border-bottom-width: 32vw;   /* (100px * 0.32) */
-    top: -32vw;                  /* (-100px * 0.32) */
-    left: -38.4vw;               /* (-120px * 0.32) */
+    border-left-width: 41.6vw;
+    border-top-width: 32vw;
+    border-bottom-width: 32vw;
+    top: -32vw;
+    left: -38.4vw;
   }
-
   .front:after {
-    border-bottom-width: 33.6vw; /* (105px * 0.32) */
-    border-left-width: 40vw;     /* (125px * 0.32) */
-    border-right-width: 40vw;    /* (125px * 0.32) */
-    top: -1.6vw;                 /* (-5px * 0.32) */
-    left: -38.4vw;               /* (-120px * 0.32) */
+    border-bottom-width: 33.6vw;
+    border-left-width: 40vw;
+    border-right-width: 40vw;
+    top: -1.6vw;
+    left: -38.4vw;
   }
-
   .top {
-    border-top-width: 33.6vw;    /* (105px * 0.32) */
-    border-left-width: 40vw;     /* (125px * 0.32) */
-    border-right-width: 40vw;    /* (125px * 0.32) */
+    border-top-width: 33.6vw;
+    border-left-width: 40vw;
+    border-right-width: 40vw;
   }
 
   /* ▼▼▼ LETTER (Mobile) ▼▼▼ */
   .letter {
-    width: 73.6vw;   /* (230px * 0.32) */
-    height: 57.6vw;  /* (180px * 0.32) */
-    top: 3.2vw;      /* (10px * 0.32) */
-    left: 3.2vw;     /* (10px * 0.32) */
+    width: 73.6vw;
+    height: 57.6vw;
+    top: 3.2vw;
+    left: 3.2vw;
   }
-
+  
   .envelope.open .letter {
-    /* (90px * 0.32) = 28.8vw */
-    transform: translateY(-28.8vw) translateZ(10vw); 
+    /* (100px * 0.32) = 32vw */
+    transform: translateY(-32vw) scale(1.25);
   }
 
   .letter-half {
     width: 100%;
-    height: 28.8vw; /* (90px * 0.32) */
+    height: 28.8vw; /* 50% of 57.6vw (90px) */
     padding: 2vw;
-  }
-
-  #bottom-half {
-    top: 28.8vw; /* (90px * 0.32) */
   }
 
   #top-half {
     top: 0px; /* อยู่ข้างบน */
   }
 
-  .letter-content-top {
+  #bottom-half {
+    top: 28.8vw; /* อยู่ข้างล่าง (90px * 0.32) */
+  }
+
+  .letter-content-bottom {
     padding: 2vw;
   }
 
   .text {
-    font-size: 2.5vw; /* ปรับขนาด font ให้สัมพันธ์กับจอ */
+    font-size: 2.5vw;
     margin: 0;
   }
   /* ▲▲▲ END OF LETTER (Mobile) ▲▲▲ */
