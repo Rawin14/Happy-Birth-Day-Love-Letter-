@@ -18,10 +18,10 @@ body {
 .back {
   position: relative;
   width: 250px;
-  height: 180px;
+  height: 200px; /* <-- แก้ไข (จาก 180px) */
   background: #aa479a;
   border-radius: 5px;
-  z-index: 3;
+  z-index: 1; /* <-- แก้ไข z-index */
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -34,7 +34,7 @@ body {
   width: 0;
   top: 0;
   left: 120px;
-  z-index: 4;
+  z-index: 3; /* <-- แก้ไข z-index */
 }
 
 .front:before {
@@ -47,7 +47,6 @@ body {
   width: 0;
   top: -100px;
   left: -120px;
-  
 }
 
 .front:after {
@@ -72,8 +71,7 @@ body {
   width: 0;
   top: 0;
   transform-origin: top;
-  /* 1. ฝาเปิด (0.0s -> 0.4s) */
-  transition: transform 0.4s ease-out; 
+  transition: transform 0.4s ease-out;
   z-index: 5;
 }
 
@@ -83,38 +81,29 @@ body {
 }
 
 
-/* --- ▼▼▼ LETTER SECTION (แก้ไขใหม่) ▼▼▼ --- */
+/* --- ▼▼▼ LETTER SECTION (แก้ไข) ▼▼▼ --- */
 
-/* .letter (Container) - คอนเทนเนอร์สำหรับจดหมาย */
 .letter {
   position: absolute;
   top: 10px;
   left: 10px;
   width: 230px;
-  height: 320px; /* 90px + 90px */
-  z-index: 4; /* อยู่หลัง .front */
+  height: 230px; /* <-- แก้ไข (140px + 90px = 230px) */
+  z-index: 2; /* <-- แก้ไข z-index (อยู่หลัง .front) */
   transform-style: preserve-3d;
-  
-  /* 2. เลื่อนขึ้นและขยาย (0.4s -> 0.9s) */
   transition: transform 0.5s ease-out 0.4s;
 }
 
-/* envelope.open .letter - ตอนเด้งออก */
 .envelope.open .letter {
-  /* * เลื่อนขึ้น Y(-100px) เพื่อให้ "ฐาน" (ที่ 10px+90px=100px)
-   * ไปอยู่ที่ 0 (บนขอบซอง) 
-   * และขยาย 1.25 เท่า
-   */
   transform: translateY(-100px) scale(1.25);
   z-index: 10;
 }
 
-/* ส่วนของจดหมาย (ครึ่งบนและครึ่งล่าง) */
 .letter-half {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 140px; /* ครึ่งเดียว (180/2) */
+  height: 140px; /* ความสูงครึ่งบน */
   background: white;
   padding: 20px;
   box-sizing: border-box;
@@ -123,45 +112,41 @@ body {
   justify-content: center;
 }
 
-/* ครึ่งบน (ฐาน) */
 #top-half {
-  top: 0px; /* อยู่ข้างบน */
+  top: 0px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
-  box-shadow: 0 -3px 10px rgba(0,0,0,0.1); /* เพิ่มเงาเล็กน้อย */
-  z-index: 2; /* อยู่เหนือครึ่งล่าง */
+  box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
+  z-index: 2;
 }
 
-/* ครึ่งล่าง (ส่วนที่พับ) */
 #bottom-half {
-  top: 90px; /* อยู่ข้างล่าง */
+  top: 90px; /* <-- รอยพับ (เริ่มที่ 90px) */
+  height: 140px; /* <-- แก้ไข: ต้องสูง 140px (เท่าครึ่งบน) */
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
-  
-  transform-origin: top center; /* <-- จุดหมุน = รอยพับ (ขอบบน) */
-  backface-visibility: hidden; 
-  
-  /* 3. จดหมายกางออก (0.9s -> 1.4s) */
+  transform-origin: top center;
+  backface-visibility: hidden;
   transition: transform 0.5s ease-out 0.9s;
-  
-  /* * สถานะเริ่มต้น: พับ 180 องศา (พับขึ้นมา) * */
-  transform: rotateX(-180deg); 
-  z-index: 1; /* อยู่ใต้ครึ่งบน */
+  transform: rotateX(-180deg);
+  z-index: 1;
 }
 
-/* envelope.open #bottom-half - ตอนกางออก */
 .envelope.open #bottom-half {
-  transform: rotateX(0deg); /* กางลงเป็น 0 องศา */
+  transform: rotateX(0deg);
 }
 
-/* เนื้อหาด้านในของครึ่งล่าง (ที่ต้องพลิกกลับด้าน) */
 .letter-content-bottom {
+  position: absolute; /* <-- เพิ่ม */
+  top: 0; left: 0; /* <-- เพิ่ม */
   width: 100%;
   height: 100%;
   background: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: rotateX(180deg); /* <-- แก้ไข: พลิกเนื้อหากลับด้าน */
+  backface-visibility: hidden; /* <-- เพิ่ม */
 }
 
 .text {
@@ -193,21 +178,23 @@ body {
 }
 
 
-/* --- ⬇️ MOBILE RESPONSIVENESS (ฉบับแก้ไข) ⬇️ --- */
+/* --- ⬇️ MOBILE RESPONSIVENESS (ฉบับคำนวณใหม่) ⬇️ --- */
 @media (max-width: 600px) {
 
-  /* (Base Ratio: 80vw / 250px) = 0.32vw per pixel */
+  /* Base Ratio: (80vw / 250px) = 0.32vw per pixel */
 
   .back {
     width: 80vw;
-    height: 64vw;
+    height: 64vw; /* (200px * 0.32) */
   }
+
   .front {
-    border-right-width: 41.6vw;
-    border-top-width: 32vw;
-    border-bottom-width: 32vw;
-    left: 38.4vw;
+    border-right-width: 41.6vw;  /* (130px * 0.32) */
+    border-top-width: 32vw;      /* (100px * 0.32) */
+    border-bottom-width: 32vw;   /* (100px * 0.32) */
+    left: 38.4vw;                /* (120px * 0.32) */
   }
+
   .front:before {
     border-left-width: 41.6vw;
     border-top-width: 32vw;
@@ -215,13 +202,15 @@ body {
     top: -32vw;
     left: -38.4vw;
   }
+
   .front:after {
-    border-bottom-width: 33.6vw;
-    border-left-width: 40vw;
+    border-bottom-width: 33.6vw; /* (105px * 0.32) */
+    border-left-width: 40vw;     /* (125px * 0.32) */
     border-right-width: 40vw;
     top: -1.6vw;
     left: -38.4vw;
   }
+
   .top {
     border-top-width: 33.6vw;
     border-left-width: 40vw;
@@ -230,33 +219,33 @@ body {
 
   /* ▼▼▼ LETTER (Mobile) ▼▼▼ */
   .letter {
-    width: 73.6vw;
-    height: 57.6vw;
+    width: 73.6vw;   /* (230px * 0.32) */
+    height: 73.6vw;  /* (230px * 0.32) <-- แก้ไข */
     top: 3.2vw;
     left: 3.2vw;
   }
   
   .envelope.open .letter {
-    /* (100px * 0.32) = 32vw */
-    transform: translateY(-32vw) scale(1.25);
+    transform: translateY(-32vw) scale(1.25); /* (100px * 0.32) */
   }
 
   .letter-half {
     width: 100%;
-    height: 28.8vw; /* 50% of 57.6vw (90px) */
-    padding: 2vw;
+    height: 44.8vw; /* (140px * 0.32) <-- แก้ไข */
+    padding: 3.2vw; /* (10px * 0.32) หรือ 2.5vw ก็ได้ */
   }
 
   #top-half {
-    top: 0px; /* อยู่ข้างบน */
+    top: 0px;
   }
 
   #bottom-half {
-    top: 28.8vw; /* อยู่ข้างล่าง (90px * 0.32) */
+    top: 28.8vw; /* (90px * 0.32) */
+    height: 44.8vw; /* (140px * 0.32) <-- แก้ไข */
   }
 
   .letter-content-bottom {
-    padding: 2vw;
+    padding: 2vw; /* หรือ 3.2vw */
   }
 
   .text {
