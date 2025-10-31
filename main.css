@@ -74,6 +74,7 @@ body {
   transform-origin: top;
   /* 1. ฝาเปิด (0.0s -> 0.4s) */
   transition: transform 0.4s ease-out; 
+  z-index: 5;
 }
 
 .envelope.open .top {
@@ -91,7 +92,7 @@ body {
   left: 10px;
   width: 230px;
   height: 320px; /* 90px + 90px */
-  z-index: 1; /* อยู่หลัง .front */
+  z-index: 4; /* อยู่หลัง .front */
   transform-style: preserve-3d;
   
   /* 2. เลื่อนขึ้นและขยาย (0.4s -> 0.9s) */
