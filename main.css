@@ -24,7 +24,7 @@ body {
   height: 200px; /* <-- แก้ไข (จาก 180px) */
   background: #aa479a;
   border-radius: 5px;
-  z-index: 1; /* <-- แก้ไข z-index */
+  z-index: 3; /* <-- แก้ไข z-index */
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -37,7 +37,7 @@ body {
   width: 0;
   top: 0;
   left: 120px;
-  z-index: 3; /* <-- แก้ไข z-index */
+  z-index: 6; /* <-- แก้ไข z-index */
 }
 
 .front:before {
@@ -62,7 +62,7 @@ body {
   width: 0;
   top: -5px;
   left: -120px;
-  z-index: 4;
+  z-index: 2;
 }
 
 .top {
@@ -74,14 +74,14 @@ body {
   width: 0;
   top: 0;
   transform-origin: top;
-  transition: transform 0.4s ease-out;
-  z-index: 5;
+  transition: transform 0.4s ease-out 1.4s;
+  z-index: 3;
 }
 
 .envelope.open .top {
   transform: rotateX(160deg);
-  z-index: 0; /* ส่งไปข้างหลัง */
 
+  transition-delay: 0s;
 }
 
 
@@ -93,16 +93,19 @@ body {
   left: 10px;
   width: 230px;
   height: 230px; /* <-- แก้ไข (140px + 90px = 230px) */
-  z-index: 2; /* <-- แก้ไข z-index (อยู่หลัง .front) */
+  z-index: 3; /* <-- แก้ไข z-index (อยู่หลัง .front) */
   transform-style: preserve-3d;
-  transition: transform 0.5s ease-out 0.4s;
+  transition: transform 0.5s ease-out 1.0s;
 
 }
 
 .envelope.open .letter {
-  transform: translateY(-100px) scale(1.25);
+  transform: translateY(-160px)  scale(1.25);
   z-index: 10;
+
+  transition-delay: 0.4s;
 }
+
 
 .letter-half {
   position: absolute;
@@ -132,13 +135,16 @@ body {
   border-bottom-right-radius: 3px;
   transform-origin: top center;
   backface-visibility: hidden;
-  transition: transform 0.5s ease-out 0.9s;
+  transition: transform 0.5s ease-out 0.5s;
   transform: rotateX(-180deg);
-  z-index: -2;
+  z-index: 5;
+
 }
 
 .envelope.open #bottom-half {
   transform: rotateX(0deg);
+  
+  transition-delay: 0.9s;
 }
 
 
@@ -155,7 +161,7 @@ body {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
 
   opacity: 0;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out 0s;
 }
 
 .to-name {
@@ -167,7 +173,7 @@ body {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 
   opacity: 0;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out 0s;
 }
 
 .for-name {
@@ -179,7 +185,7 @@ body {
   text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 
   opacity: 0;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out 0s;
 }
 
 /* --- ⬇️ เพิ่มโค้ดบล็อกใหม่นี้ ⬇️ --- */
@@ -203,7 +209,7 @@ body {
   padding: 5px; /* ขอบขาว */
   animation: untoldcoding 1s infinite;
   opacity: 0;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out 0s;
 
 }
 
