@@ -198,8 +198,8 @@ body {
   position: absolute;
   bottom: -20px;
   left: -20px;
-  width: 75px;
-  height: 100px;
+  width: 72px;
+  height: 112px;
   padding: 5px; /* ขอบขาว */
   animation: untoldcoding 1s infinite;
   opacity: 0;
@@ -319,8 +319,8 @@ body {
   /* ▲▲▲ END OF LETTER (Mobile) ▲▲▲ */
 
   .CouplePic {
-    width: 24vw;  /* (75px * 0.32) */
-    height: 42.6vw; /* (100px * 0.32) */
+    width: 22.4vw;  /* (75px * 0.32) */
+    height: 40vw; /* (100px * 0.32) */
     bottom: -8vw;
     left: -8vw;
     padding: 1.6vw; /* (5px * 0.32) */
