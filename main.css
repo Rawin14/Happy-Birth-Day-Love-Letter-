@@ -292,7 +292,7 @@ body {
   }
   
   .envelope.open .letter {
-    transform: translateY(-32vmin) scale(1.25); /* (100px * 0.32) */
+    transform: translateY(-48vmin) scale(1.25); /* (100px * 0.32) */
   }
 
   .letter-half {
