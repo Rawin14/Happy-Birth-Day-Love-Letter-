@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Momo+Signature&display=swap');
 
-
 body {
   display: flex;
   align-items: center;
@@ -21,10 +20,10 @@ body {
 .back {
   position: relative;
   width: 250px;
-  height: 200px; /* <-- แก้ไข (จาก 180px) */
+  height: 200px; 
   background: #aa479a;
   border-radius: 5px;
-  z-index: 1; /* <-- แก้ไข z-index */
+  z-index: 1; 
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
 }
 
@@ -37,7 +36,7 @@ body {
   width: 0;
   top: 0;
   left: 120px;
-  z-index: 3; /* <-- แก้ไข z-index */
+  z-index: 3; 
 }
 
 .front:before {
@@ -81,7 +80,6 @@ body {
 .envelope.open .top {
   transform: rotateX(160deg);
   z-index: 0; /* ส่งไปข้างหลัง */
-
 }
 
 
@@ -92,11 +90,10 @@ body {
   top: 10px;
   left: 10px;
   width: 230px;
-  height: 230px; /* <-- แก้ไข (140px + 90px = 230px) */
-  z-index: 2; /* <-- แก้ไข z-index (อยู่หลัง .front) */
+  height: 230px; /* (140px + 90px = 230px) */
+  z-index: 2; /* (อยู่หลัง .front) */
   transform-style: preserve-3d;
   transition: transform 0.5s ease-out 0.4s;
-
 }
 
 .envelope.open .letter {
@@ -122,25 +119,37 @@ body {
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
   box-shadow: 0 -3px 10px rgba(0,0,0,0.1);
-  z-index: -1;
+  z-index: 2; /* <-- แก้ไข: เป็น 2 (อยู่บน) */
 }
 
 #bottom-half {
   top: 90px; /* <-- รอยพับ (เริ่มที่ 90px) */
-  height: 140px; /* <-- แก้ไข: ต้องสูง 140px (เท่าครึ่งบน) */
+  height: 140px; /* <-- ต้องสูง 140px (เท่าครึ่งบน) */
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   transform-origin: top center;
   backface-visibility: hidden;
   transition: transform 0.5s ease-out 0.9s;
   transform: rotateX(-180deg);
-  z-index: -2;
+  z-index: 1; /* <-- แก้ไข: เป็น 1 (อยู่ล่าง) */
 }
 
 .envelope.open #bottom-half {
   transform: rotateX(0deg);
 }
 
+.letter-content-bottom {
+  position: absolute; 
+  top: 0; left: 0; 
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotateX(-180deg); /* <-- แก้ไข: พลิกเนื้อหากลับด้าน */
+  backface-visibility: hidden; /* <-- แก้ไข: ซ่อนด้านหลัง */
+}
 
 .text {
   font-size: 12px;
@@ -182,15 +191,10 @@ body {
   transition: opacity 0.5s ease-out;
 }
 
-/* --- ⬇️ เพิ่มโค้ดบล็อกใหม่นี้ ⬇️ --- */
-
-/* 3. เมื่อซองเปิด (open) */
 .envelope.open .text,
 .envelope.open .to-name,
 .envelope.open .for-name {
-  opacity: 1; /* 4. ทำให้มองเห็น */
-  
-  /* 5. (สำคัญ!) หน่วงเวลา 1.4 วินาที (รอให้กางเสร็จก่อน) */
+  opacity: 1; 
   transition-delay: 1.4s;
 }
 
@@ -204,25 +208,19 @@ body {
   animation: untoldcoding 1s infinite;
   opacity: 0;
   transition: opacity 0.5s ease-out;
-
 }
 
-.Couple-Pic { /* คลาสสำหรับรูปภาพจริงด้านใน */
-  width: 100%; /* เต็มความกว้างของกรอบ */
-  height: 100%; /* เต็มความสูงของกรอบ */
-  object-fit: cover; /* ทำให้รูปเต็มกรอบ */
-
-  /* --- ⬇️ ทำให้รูปด้านใน "ตั้งตรง" โดยหมุนกลับ ⬇️ --- */
-  transform: rotate(35deg); /* หมุนกลับ 15 องศา เพื่อหักล้างการเอียงของกรอบ */
+.Couple-Pic { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  transform: rotate(35deg); 
 }
 
 .envelope.open .CouplePic {
-  opacity: 1; /* ทำให้มองเห็น */
-  transition-delay: 1.4s; /* หน่วงเวลา 1.4 วินาที */
+  opacity: 1; 
+  transition-delay: 1.4s; 
 }
-
-/* --- ▲▲▲ END OF LETTER SECTION ▲▲▲ --- */
-
 
 .text1 {
   position: absolute;
@@ -238,61 +236,61 @@ body {
 }
 
 
-/* --- ⬇️ MOBILE RESPONSIVENESS (ฉบับคำนวณใหม่) ⬇️ --- */
+/* --- ⬇️ MOBILE RESPONSIVENESS (แก้ไข vmin) ⬇️ --- */
 @media (max-width: 600px) {
 
-  /* Base Ratio: (80vw / 250px) = 0.32vw per pixel */
+  /* Base Ratio: (80vmin / 250px) = 0.32vmin per pixel */
 
   .back {
-    width: 80vw;
-    height: 64vw; /* (200px * 0.32) */
+    width: 80vmin;
+    height: 64vmin; /* (200px * 0.32) */
   }
 
   .front {
-    border-right-width: 41.6vw;  /* (130px * 0.32) */
-    border-top-width: 32vw;      /* (100px * 0.32) */
-    border-bottom-width: 32vw;   /* (100px * 0.32) */
-    left: 38.4vw;                /* (120px * 0.32) */
+    border-right-width: 41.6vmin;  /* (130px * 0.32) */
+    border-top-width: 32vmin;      /* (100px * 0.32) */
+    border-bottom-width: 32vmin;   /* (100px * 0.32) */
+    left: 38.4vmin;                /* (120px * 0.32) */
   }
 
   .front:before {
-    border-left-width: 41.6vw;
-    border-top-width: 32vw;
-    border-bottom-width: 32vw;
-    top: -32vw;
-    left: -38.4vw;
+    border-left-width: 41.6vmin;
+    border-top-width: 32vmin;
+    border-bottom-width: 32vmin;
+    top: -32vmin;
+    left: -38.4vmin;
   }
 
   .front:after {
-    border-bottom-width: 33.6vw; /* (105px * 0.32) */
-    border-left-width: 40vw;     /* (125px * 0.32) */
-    border-right-width: 40vw;
-    top: -1.6vw;
-    left: -38.4vw;
+    border-bottom-width: 33.6vmin; /* (105px * 0.32) */
+    border-left-width: 40vmin;     /* (125px * 0.32) */
+    border-right-width: 40vmin;
+    top: -1.6vmin;
+    left: -38.4vmin;
   }
 
   .top {
-    border-top-width: 33.6vw;
-    border-left-width: 40vw;
-    border-right-width: 40vw;
+    border-top-width: 33.6vmin;
+    border-left-width: 40vmin;
+    border-right-width: 40vmin;
   }
 
   /* ▼▼▼ LETTER (Mobile) ▼▼▼ */
   .letter {
-    width: 73.6vw;   /* (230px * 0.32) */
-    height: 73.6vw;  /* (230px * 0.32) <-- แก้ไข */
-    top: 3.2vw;
-    left: 3.2vw;
+    width: 73.6vmin;   /* (230px * 0.32) */
+    height: 73.6vmin;  /* (230px * 0.32) */
+    top: 3.2vmin;
+    left: 3.2vmin;
   }
   
   .envelope.open .letter {
-    transform: translateY(-32vw) scale(1.25); /* (100px * 0.32) */
+    transform: translateY(-32vmin) scale(1.25); /* (100px * 0.32) */
   }
 
   .letter-half {
     width: 100%;
-    height: 44.8vw; /* (140px * 0.32) <-- แก้ไข */
-    padding: 3.2vw; /* (10px * 0.32) หรือ 2.5vw ก็ได้ */
+    height: 44.8vmin; /* (140px * 0.32) */
+    padding: 3.2vmin; 
   }
 
   #top-half {
@@ -300,30 +298,34 @@ body {
   }
 
   #bottom-half {
-    top: 28.8vw; /* (90px * 0.32) */
-    height: 44.8vw; /* (140px * 0.32) <-- แก้ไข */
+    top: 28.8vmin; /* (90px * 0.32) */
+    height: 44.8vmin; /* (140px * 0.32) */
+  }
+
+  .letter-content-bottom {
+    padding: 2vmin; 
   }
 
   .to-name {
-    font-size: 6.2vw;
+    font-size: 4vmin; /* ปรับ font-size เป็น vmin */
   }
 
   .text {
-    font-size: 5.5vw;
+    font-size: 3.5vmin; /* ปรับ font-size เป็น vmin */
     margin: 0;
   }
 
   .for-name {
-    font-size: 6.2vw;
+    font-size: 4vmin; /* ปรับ font-size เป็น vmin */
   }
   /* ▲▲▲ END OF LETTER (Mobile) ▲▲▲ */
 
   .CouplePic {
-    width: 22.4vw;  /* (75px * 0.32) */
-    height: 40vw; /* (100px * 0.32) */
-    bottom: -8vw;
-    left: -8vw;
-    padding: 1.6vw; /* (5px * 0.32) */
+    width: 22.4vmin;  /* (75px * 0.32) */
+    height: 32vmin;   /* (100px * 0.32) */
+    bottom: -8vmin;
+    left: -8vmin;
+    padding: 1.6vmin; /* (5px * 0.32) */
   }
 
   .Couple-Pic {
