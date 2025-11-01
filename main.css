@@ -196,8 +196,8 @@ body {
 
 .CouplePic {
   position: absolute;
-  bottom: -20px;
-  left: -20px;
+  bottom: -40px;
+  left: -10px;
   width: 72px;
   height: 112px;
   padding: 5px; /* ขอบขาว */
@@ -213,7 +213,7 @@ body {
   object-fit: cover; /* ทำให้รูปเต็มกรอบ */
 
   /* --- ⬇️ ทำให้รูปด้านใน "ตั้งตรง" โดยหมุนกลับ ⬇️ --- */
-  transform: rotate(35deg); /* หมุนกลับ 15 องศา เพื่อหักล้างการเอียงของกรอบ */
+  transform: rotate(40deg); /* หมุนกลับ 15 องศา เพื่อหักล้างการเอียงของกรอบ */
 }
 
 .envelope.open .CouplePic {
@@ -325,8 +325,8 @@ body {
   .CouplePic {
     width: 22.4vmin;  /* (75px * 0.32) */
     height: 32vmin;   /* (100px * 0.32) */
-    bottom: -8vmin;
-    left: -10vmin;
+    bottom: -6vmin;
+    left: -6vmin;
     padding: 1.6vmin; /* (5px * 0.32) */
   }
 
