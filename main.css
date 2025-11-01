@@ -326,7 +326,7 @@ body {
     width: 22.4vmin;  /* (75px * 0.32) */
     height: 32vmin;   /* (100px * 0.32) */
     bottom: -8vmin;
-    left: -8vmin;
+    left: -10vmin;
     padding: 1.6vmin; /* (5px * 0.32) */
   }
 
