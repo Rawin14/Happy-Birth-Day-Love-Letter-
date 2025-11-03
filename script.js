@@ -22,3 +22,20 @@ envelope.addEventListener('click', () => {
         envelope.classList.add('open');
     }
 });
+
+
+// สร้างหิมะตกอัตโนมัติ
+function createSnowflakes() {
+  const snowContainer = document.body;
+  const snowflakeSymbols = ['❄', '❅', '❆', '✻', '✼', '❉'];
+  
+  for (let i = 0; i < 20; i++) {
+    const snowflake = document.createElement('div');
+    snowflake.className = 'snowflake';
+    snowflake.innerHTML = snowflakeSymbols[Math.floor(Math.random() * snowflakeSymbols.length)];
+    snowContainer.appendChild(snowflake);
+  }
+}
+
+// เรียกใช้เมื่อโหลดหน้าเว็บ
+window.addEventListener('load', createSnowflakes);
