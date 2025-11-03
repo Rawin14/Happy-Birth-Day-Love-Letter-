@@ -320,7 +320,7 @@ body {
   .letter-half {
     width: 100%;
     /* (90px * 0.32) = 28.8vmin (ความสูงครึ่งบน) */
-    height: 28.8vmin; 
+    height: 44.8vmin; 
     padding: 3.2vmin; 
   }
 
@@ -331,7 +331,7 @@ body {
 
   #bottom-half {
     top: 28.8vmin; /* (90px * 0.32) <-- รอยพับ */
-    height: 28.8vmin; /* (140px * 0.32) <-- ความสูงครึ่งล่าง */
+    height: 44.8vmin; /* (140px * 0.32) <-- ความสูงครึ่งล่าง */
   }
 
 
