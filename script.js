@@ -39,3 +39,34 @@ function createSnowflakes() {
 
 // เรียกใช้เมื่อโหลดหน้าเว็บ
 window.addEventListener('load', createSnowflakes);
+
+// 🎵 Vinyl Record Player Script
+const vinylContainer = document.getElementById('vinylContainer');
+const vinylRecord = document.getElementById('vinylRecord');
+const playButton = document.getElementById('playButton');
+const musicPlayer = document.getElementById('musicPlayer');
+
+let isPlaying = false;
+
+// คลิกที่แผ่นเสียงหรือปุ่มเล่น
+vinylContainer.addEventListener('click', function() {
+  if (isPlaying) {
+    // หยุดเพลง
+    musicPlayer.pause();
+    vinylRecord.classList.remove('playing');
+    playButton.classList.remove('playing');
+    isPlaying = false;
+  } else {
+    // เล่นเพลง
+    musicPlayer.play();
+    vinylRecord.classList.add('playing');
+    playButton.classList.add('playing');
+    isPlaying = true;
+  }
+});
+
+// Auto-play เมื่อโหลดหน้าเว็บ (บางเบราว์เซอร์อาจบลอก)
+// ถ้าต้องการให้เล่นอัตโนมัติ ให้เอาคอมเมนต์ออก
+// window.addEventListener('load', function() {
+//   vinylContainer.click();
+// });
