@@ -338,7 +338,8 @@ body {
 
   .text {
     font-size: 3.5vmin; 
-    margin: 10px 0.5cm 10px 0.5cm;
+    margin: auto 2vmin auto 2vmin;
+    
   }
 
   .for-name {
