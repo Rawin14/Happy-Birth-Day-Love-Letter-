@@ -74,14 +74,22 @@ body {
   width: 0;
   top: 0;
   transform-origin: top;
-  transition: transform 0.4s ease-out 1.4s;
   z-index: 3;
+
+  /* --- ⬇️ แก้ไขบรรทัดนี้ ⬇️ --- */
+  /* ตอนปิด: หน่วง transform 1.0s, หน่วง z-index 1.4s */
+  transition: transform 0.4s ease-out 1.4s,
+              z-index 0s linear 1.4s
 }
 
 .envelope.open .top {
   transform: rotateX(160deg);
-
-  transition-delay: 0s;
+  z-index: 0; 
+  
+  /* --- ⬇️ แก้ไขบรรทัดนี้ ⬇️ --- */
+  /* ตอนเปิด: ให้ทำงานทันที (delay 0s) */
+  transition: transform 0.4s ease-out 0s,
+              z-index 0s linear 0s;
 }
 
 
@@ -95,15 +103,21 @@ body {
   height: 230px; /* <-- แก้ไข (140px + 90px = 230px) */
   z-index: 3; /* <-- แก้ไข z-index (อยู่หลัง .front) */
   transform-style: preserve-3d;
-  transition: transform 0.5s ease-out 1.0s;
+ /* --- ⬇️ แก้ไขบรรทัดนี้ ⬇️ --- */
+  /* ตอนปิด: หน่วง transform 1.0s, หน่วง z-index 1.4s */
+  transition: transform 0.5s ease-out 1.0s,
+              z-index 0s linear 1.4s;
 
 }
 
 .envelope.open .letter {
-  transform: translateY(-160px)  scale(1.25);
+ transform: translateY(-100px) scale(1.25);
   z-index: 10;
-
-  transition-delay: 0.4s;
+  
+  /* --- ⬇️ แก้ไขบรรทัดนี้ ⬇️ --- */
+  /* ตอนเปิด: หน่วง transform 0.4s, z-index ทำงานทันที */
+  transition: transform 0.5s ease-out 0.4s,
+              z-index 0s linear 0s;
 }
 
 
