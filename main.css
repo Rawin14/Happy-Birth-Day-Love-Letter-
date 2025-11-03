@@ -191,10 +191,11 @@ body {
 }
 
 .for-name {
-  margin: 0px 10px 10px 1px;
+  margin: 0px 10px 10px 0px;
   text-align: right;
   padding: 0;
   font-size: 13px;
+  font-family: "Momo Signature", cursive;
   color: #e78197;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 
@@ -204,6 +205,8 @@ body {
 
 .highlight-text {
   font-size: 11px;
+  font-family: "Momo Signature", cursive;
+  margin: 10px 0 10px 0;
   color: rgb(214, 62, 100);
   font-weight: bold;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
@@ -485,10 +488,11 @@ body {
 
 .music-player {
   position: absolute;
-  left: 50%;
+  bottom: -120px;
+  left: 60%;
   transform: translateX(-50%);
-  width: 300px;
-  max-width: 300px;
+  width: 200px;
+  max-width: 200px;
 
 
   opacity: 0;
