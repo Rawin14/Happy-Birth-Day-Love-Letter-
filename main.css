@@ -258,12 +258,10 @@ body {
 }
 
 
-/* --- ⬇️ MOBILE RESPONSIVENESS (ฉบับ vmin ที่ถูกต้อง) ⬇️ --- */
-/* (ใช้กับจอที่เล็กกว่า 600px) */
+/* --- ⬇️ MOBILE RESPONSIVENESS (แก้ไข vmin) ⬇️ --- */
 @media (max-width: 600px) {
 
   /* Base Ratio: (80vmin / 250px) = 0.32vmin per pixel */
-  /* (vmin = ด้านที่สั้นที่สุดของจอ) */
 
   .back {
     width: 80vmin;
@@ -308,24 +306,22 @@ body {
   }
   
   .envelope.open .letter {
-    transform: translateY(-32vmin) scale(1.25); /* (100px * 0.32) */
+    transform: translateY(-48vmin) scale(1.25); /* (100px * 0.32) */
   }
 
   .letter-half {
     width: 100%;
-    /* (90px * 0.32) = 28.8vmin (ความสูงครึ่งบน) */
-    height: 28.8vmin; 
+    height: 51.2vmin; /* (140px * 0.32) */
     padding: 3.2vmin; 
   }
 
   #top-half {
     top: 0px;
-    height: 28.8vmin; /* <-- แก้ไข: ระบุความสูงของครึ่งบน */
   }
 
   #bottom-half {
-    top: 28.8vmin; /* (90px * 0.32) <-- รอยพับ */
-    height: 44.8vmin; /* (140px * 0.32) <-- ความสูงครึ่งล่าง */
+    top: 28.8vmin; /* (90px * 0.32) */
+    height: 44.8vmin; /* (140px * 0.32) */
   }
 
   .letter-content-bottom {
@@ -333,29 +329,28 @@ body {
   }
 
   .to-name {
-    font-size: 4vmin; 
+    font-size: 4vmin; /* ปรับ font-size เป็น vmin */
   }
 
   .text {
-    font-size: 3.5vmin; 
-    margin: auto 2vmin auto 2vmin;
-    
+    font-size: 3.5vmin; /* ปรับ font-size เป็น vmin */
+    margin: 2vmin 0.5vmin 2vmin 0.5vmin;
   }
 
   .for-name {
-    font-size: 4vmin; 
+    font-size: 4vmin; /* ปรับ font-size เป็น vmin */
   }
   /* ▲▲▲ END OF LETTER (Mobile) ▲▲▲ */
 
   .CouplePic {
-    width: 23.04vmin;  /* (72px * 0.32) */
-    height: 35.84vmin; /* (112px * 0.32) */
-    bottom: -25.6vmin; /* (-80px * 0.32) */
-    left: -3.2vmin;   /* (-10px * 0.32) */
-    padding: 1.6vmin; 
+    width: 22.4vmin;  /* (75px * 0.32) */
+    height: 32vmin;   /* (100px * 0.32) */
+    bottom: -1vmin;
+    left: -2vmin;
+    padding: 1.6vmin; /* (5px * 0.32) */
   }
 
   .Couple-Pic {
-    transform: rotate(40deg);
+    transform: rotate(35deg);
   }
 }
