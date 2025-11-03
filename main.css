@@ -266,98 +266,114 @@ body {
 }
 
 
-/* --- ⬇️ MOBILE RESPONSIVENESS (แก้ไข vmin) ⬇️ --- */
-@media (max-width: 600px) {
+/* --- RESPONSIVE BREAKPOINTS --- */
 
-  /* Base Ratio: (80vmin / 250px) = 0.32vmin per pixel */
-
-  .back {
-    width: 80vmin;
-    height: 64vmin; /* (200px * 0.32) */
+/* สำหรับหน้าจอขนาดใหญ่ (Tablet ขึ้นไป) */
+@media (min-width: 768px) {
+  .envelope {
+    max-width: 250px;
   }
-
+  
   .front {
-    border-right-width: 41.6vmin;  /* (130px * 0.32) */
-    border-top-width: 32vmin;      /* (100px * 0.32) */
-    border-bottom-width: 32vmin;   /* (100px * 0.32) */
-    left: 38.4vmin;                /* (120px * 0.32) */
+    border-right: 130px solid #c05aaf;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid transparent;
+    left: 120px;
   }
-
+  
   .front:before {
-    border-left-width: 41.6vmin;
-    border-top-width: 32vmin;
-    border-bottom-width: 32vmin;
-    top: -32vmin;
-    left: -38.4vmin;
+    border-left: 130px solid #c05aaf;
+    border-top: 100px solid transparent;
+    border-bottom: 100px solid transparent;
+    top: -100px;
+    left: -120px;
   }
-
+  
   .front:after {
-    border-bottom-width: 33.6vmin; /* (105px * 0.32) */
-    border-left-width: 40vmin;     /* (125px * 0.32) */
-    border-right-width: 40vmin;
-    top: -1.6vmin;
-    left: -38.4vmin;
+    border-bottom: 105px solid #b5519c;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
+    top: -5px;
+    left: -120px;
   }
-
+  
   .top {
-    border-top-width: 33.6vmin;
-    border-left-width: 40vmin;
-    border-right-width: 40vmin;
+    border-top: 105px solid #cb63c2;
+    border-left: 125px solid transparent;
+    border-right: 125px solid transparent;
   }
-
-  /* ▼▼▼ LETTER (Mobile) ▼▼▼ */
+  
   .letter {
-    width: 73.6vmin;   /* (230px * 0.32) */
-    height: 73.6vmin;  /* (230px * 0.32) */
-    top: 3.2vmin;
-    left: 3.2vmin;
+    top: 10px;
+    left: 10px;
+    width: 230px;
+    height: 230px;
   }
   
   .envelope.open .letter {
-    transform: translateY(-32vmin) scale(1.25); /* (100px * 0.32) */
+    transform: translateY(-100px) scale(1.25);
   }
-
-  .letter-half {
-    width: 100%;
-    /* (90px * 0.32) = 28.8vmin (ความสูงครึ่งบน) */
-    height: 44.8vmin; 
-    padding: 3.2vmin; 
-  }
-
+  
   #top-half {
-    top: 0px;
-    height: 28.8vmin; /* <-- แก้ไข: ระบุความสูงของครึ่งบน */
+    height: 180px;
   }
-
+  
   #bottom-half {
-    top: 28.8vmin; /* (90px * 0.32) <-- รอยพับ */
-    height: 44.8vmin; /* (140px * 0.32) <-- ความสูงครึ่งล่าง */
+    top: 90px;
+    height: 180px;
   }
-
-
-  .to-name {
-    font-size: 4vmin; 
-  }
-
+  
   .text {
-    font-size: 3.5vmin; 
-    margin: 2vmin 0.5cm 2vmin 0.5cm;
+    font-size: 9px;
+    margin: 10px 0.5cm;
   }
-
+  
+  .to-name {
+    font-size: 13px;
+    margin: 10px 1px 0px 10px;
+  }
+  
   .for-name {
-    font-size: 4vmin; 
+    font-size: 13px;
+    margin: 0px 10px 10px 1px;
   }
-  /* ▲▲▲ END OF LETTER (Mobile) ▲▲▲ */
-
+  
+  .highlight-text {
+    font-size: 11px;
+  }
+  
   .CouplePic {
-    width: 23.04vmin;  /* (72px * 0.32) */
-    height: 35.84vmin; /* (112px * 0.32) */
-    bottom: -25.6vmin; /* (-80px * 0.32) */
-    left: -3.2vmin;   /* (-10px * 0.32) */
-    padding: 1.6vmin; 
+    bottom: -120px;
+    left: -10px;
+    width: 72px;
+    height: 112px;
+    padding: 5px;
   }
+  
+  .text1 {
+    font-size: inherit;
+  }
+}
 
-  .Couple-Pic {
-    transform: rotate(40deg);
+/* สำหรับโทรศัพท์ขนาดเล็กมาก */
+@media (max-width: 360px) {
+  .text {
+    font-size: 2.2vw;
+  }
+  
+  .to-name,
+  .for-name {
+    font-size: 3vw;
+  }
+  
+  .highlight-text {
+    font-size: 2.8vw;
+  }
+}
+
+/* ป้องกันการ zoom ใน iOS */
+@supports (-webkit-touch-callout: none) {
+  body {
+    -webkit-text-size-adjust: 100%;
   }
 }
