@@ -483,10 +483,22 @@ body {
   opacity: 1;
 }
 
-.envelope.open ~ .vinyl-container {
-  opacity: 0.3;
-  pointer-events: none;
+.music-player {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  max-width: 300px;
+
+
+  opacity: 0;
 }
+
+.envelope.open .music-player {
+  opacity: 1;
+  transition: opacity 0.5s ease-out 1.4s;
+}
+
 /* --- RESPONSIVE BREAKPOINTS --- */
 
 /* สำหรับหน้าจอขนาดใหญ่ (Tablet ขึ้นไป) */
@@ -631,6 +643,11 @@ body {
     padding: 4px 10px;
     bottom: -30px;
   }
+
+  .music-player {
+    bottom: -120px;
+    max-width: 250px;
+  }
 }
 
 /* สำหรับโทรศัพท์ขนาดเล็กมาก */
@@ -647,6 +664,7 @@ body {
   .highlight-text {
     font-size: 2.8vw;
   }
+
 }
 
 /* ป้องกันการ zoom ใน iOS */
