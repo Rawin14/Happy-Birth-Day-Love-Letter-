@@ -207,10 +207,23 @@ body {
   font-size: 11px;
   font-family: "Momo Signature", cursive;
   margin: 10px 0 10px 0;
-  color: rgb(214, 62, 100);
+  color: rgb(218, 30, 77);
   font-weight: bold;
-  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 
+}
+
+.rose {
+  position: absolute;
+  bottom: -40px;
+  right: -20px;
+  width: 60px;
+  height: 60px;
+  opacity: 0;
+  transition: opacity 0.5s ease-out 0s;
+}
+.envelope.open .rose {
+  opacity: 1; /* ทำให้มองเห็น */
+  transition-delay: 1.4s; /* หน่วงเวลา 1.4 วินาที */
 }
 
 /* --- ⬇️ เพิ่มโค้ดบล็อกใหม่นี้ ⬇️ --- */
@@ -488,7 +501,6 @@ body {
 
 .music-player {
   position: absolute;
-  bottom: -120px;
   left: 60%;
   transform: translateX(-50%);
   width: 200px;
