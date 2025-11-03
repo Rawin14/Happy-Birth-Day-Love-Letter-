@@ -258,61 +258,61 @@ body {
 }
 
 
-/* --- ⬇️ MOBILE RESPONSIVENESS (ฉบับคำนวณใหม่) ⬇️ --- */
+/* --- ⬇️ MOBILE RESPONSIVENESS (แก้ไข vmin) ⬇️ --- */
 @media (max-width: 600px) {
 
-  /* Base Ratio: (80vw / 250px) = 0.32vw per pixel */
+  /* Base Ratio: (80vmin / 250px) = 0.32vmin per pixel */
 
   .back {
-    width: 80vw;
-    height: 64vw; /* (200px * 0.32) */
+    width: 80vmin;
+    height: 64vmin; /* (200px * 0.32) */
   }
 
   .front {
-    border-right-width: 41.6vw;  /* (130px * 0.32) */
-    border-top-width: 32vw;      /* (100px * 0.32) */
-    border-bottom-width: 32vw;   /* (100px * 0.32) */
-    left: 38.4vw;                /* (120px * 0.32) */
+    border-right-width: 41.6vmin;  /* (130px * 0.32) */
+    border-top-width: 32vmin;      /* (100px * 0.32) */
+    border-bottom-width: 32vmin;   /* (100px * 0.32) */
+    left: 38.4vmin;                /* (120px * 0.32) */
   }
 
   .front:before {
-    border-left-width: 41.6vw;
-    border-top-width: 32vw;
-    border-bottom-width: 32vw;
-    top: -32vw;
-    left: -38.4vw;
+    border-left-width: 41.6vmin;
+    border-top-width: 32vmin;
+    border-bottom-width: 32vmin;
+    top: -32vmin;
+    left: -38.4vmin;
   }
 
   .front:after {
-    border-bottom-width: 33.6vw; /* (105px * 0.32) */
-    border-left-width: 40vw;     /* (125px * 0.32) */
-    border-right-width: 40vw;
-    top: -1.6vw;
-    left: -38.4vw;
+    border-bottom-width: 33.6vmin; /* (105px * 0.32) */
+    border-left-width: 40vmin;     /* (125px * 0.32) */
+    border-right-width: 40vmin;
+    top: -1.6vmin;
+    left: -38.4vmin;
   }
 
   .top {
-    border-top-width: 33.6vw;
-    border-left-width: 40vw;
-    border-right-width: 40vw;
+    border-top-width: 33.6vmin;
+    border-left-width: 40vmin;
+    border-right-width: 40vmin;
   }
 
   /* ▼▼▼ LETTER (Mobile) ▼▼▼ */
   .letter {
-    width: 73.6vw;   /* (230px * 0.32) */
-    height: 73.6vw;  /* (230px * 0.32) <-- แก้ไข */
-    top: 3.2vw;
-    left: 3.2vw;
+    width: 73.6vmin;   /* (230px * 0.32) */
+    height: 73.6vmin;  /* (230px * 0.32) */
+    top: 3.2vmin;
+    left: 3.2vmin;
   }
   
   .envelope.open .letter {
-    transform: translateY(-32vw) scale(1.25); /* (100px * 0.32) */
+    transform: translateY(-48vmin) scale(1.25); /* (100px * 0.32) */
   }
 
   .letter-half {
     width: 100%;
-    height: 44.8vw; /* (140px * 0.32) <-- แก้ไข */
-    padding: 3.2vw; /* (10px * 0.32) หรือ 2.5vw ก็ได้ */
+    height: 51.2vmin; /* (140px * 0.32) */
+    padding: 3.2vmin; 
   }
 
   #top-half {
@@ -320,17 +320,37 @@ body {
   }
 
   #bottom-half {
-    top: 28.8vw; /* (90px * 0.32) */
-    height: 44.8vw; /* (140px * 0.32) <-- แก้ไข */
+    top: 28.8vmin; /* (90px * 0.32) */
+    height: 44.8vmin; /* (140px * 0.32) */
   }
 
   .letter-content-bottom {
-    padding: 2vw; /* หรือ 3.2vw */
+    padding: 2vmin; 
+  }
+
+  .to-name {
+    font-size: 4vmin; /* ปรับ font-size เป็น vmin */
   }
 
   .text {
-    font-size: 2.5vw;
-    margin: 0;
+    font-size: 3.5vmin; /* ปรับ font-size เป็น vmin */
+    margin: 2vmin 0.5vmin 2vmin 0.5vmin;
+  }
+
+  .for-name {
+    font-size: 4vmin; /* ปรับ font-size เป็น vmin */
   }
   /* ▲▲▲ END OF LETTER (Mobile) ▲▲▲ */
+
+  .CouplePic {
+    width: 22.4vmin;  /* (75px * 0.32) */
+    height: 32vmin;   /* (100px * 0.32) */
+    bottom: -1vmin;
+    left: -2vmin;
+    padding: 1.6vmin; /* (5px * 0.32) */
+  }
+
+  .Couple-Pic {
+    transform: rotate(35deg);
+  }
 }
