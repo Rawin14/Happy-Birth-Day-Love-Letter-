@@ -125,7 +125,7 @@ body {
   position: absolute;
   left: 0;
   width: 100%;
-  height: 160px; /* ความสูงครึ่งบน */
+  height: 180px; /* ความสูงครึ่งบน */
   background: white;
   padding: 10px;
   box-sizing: border-box;
@@ -144,7 +144,7 @@ body {
 
 #bottom-half {
   top: 90px; /* <-- รอยพับ (เริ่มที่ 90px) */
-  height: 140px; /* <-- แก้ไข: ต้องสูง 140px (เท่าครึ่งบน) */
+  height: 180px; /* <-- แก้ไข: ต้องสูง 140px (เท่าครึ่งบน) */
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
   transform-origin: top center;
@@ -163,7 +163,7 @@ body {
 
 
 .text {
-  font-size: 12px;
+  font-size: 9px;
   margin: 10px 0.5cm 10px 0.5cm;
   padding: 0;
   text-align: center;
@@ -202,6 +202,14 @@ body {
   transition: opacity 0.5s ease-out 0s;
 }
 
+.highlight-text {
+  font-size: 11px;
+  color: rgb(214, 62, 100);
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+
+}
+
 /* --- ⬇️ เพิ่มโค้ดบล็อกใหม่นี้ ⬇️ --- */
 
 /* 3. เมื่อซองเปิด (open) */
@@ -216,7 +224,7 @@ body {
 
 .CouplePic {
   position: absolute;
-  bottom: -80px;
+  bottom: -120px;
   left: -10px;
   width: 72px;
   height: 112px;
@@ -332,7 +340,7 @@ body {
   }
 
   .text {
-    font-size: 10vmin; 
+    font-size: 3.5vmin; 
     margin: 2vmin 0.5cm 2vmin 0.5cm;
   }
 
